@@ -396,8 +396,8 @@ jobs:
               echo "::warning::未取得 FinaSU 管理器签名证书，内核仅信任上游默认签名槽，FinaSU 管理器可能显示未安装"
             fi
             # CI 检出的是 detached 提交，Kbuild 的 rev-parse --abbrev-ref 会显示 @HEAD，固定为品牌名
-            sed -i 's/@[$](KSU_VERSION_BRANCH)/@cctv18/' KernelSU/kernel/Kbuild
-            grep -q '@cctv18' KernelSU/kernel/Kbuild || echo "::warning::FinaSU 品牌名替换未命中（上游 Kbuild 结构可能已变化）"
+            sed -i 's/@[$](KSU_VERSION_BRANCH)/@YG/' KernelSU/kernel/Kbuild
+            grep -q '@YG' KernelSU/kernel/Kbuild || echo "::warning::FinaSU 品牌名替换未命中（上游 Kbuild 结构可能已变化）"
             echo "KSUVER=$KSU_VERSION" >> $GITHUB_ENV
             echo "ksuver=$KSU_VERSION" >> $GITHUB_OUTPUT
           else
