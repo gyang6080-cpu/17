@@ -137,7 +137,7 @@ echo "CONFIG_LOCALVERSION_AUTO=n" >> ./common/arch/arm64/configs/gki_defconfig
 if [[ $KSU_BRANCH == [yYrR] ]]; then
   echo ">>> 拉取 BakaSU 并设置版本（由于SukiSU长期未维护无法正常编译，且BakaSU兼容sukisu管理器，故SukiSU源码仓库已重定向为bakasu）..."
   curl -LSs "https://raw.githubusercontent.com/Baka-SU/BakaSU/main/kernel/setup.sh" | bash -s main
-  echo 'CONFIG_KSU_FULL_NAME_FORMAT="%TAG_NAME%-%COMMIT_SHA%@cctv18"' >> ./common/arch/arm64/configs/gki_defconfig
+  echo 'CONFIG_KSU_FULL_NAME_FORMAT="%TAG_NAME%-%COMMIT_SHA%@YG"' >> ./common/arch/arm64/configs/gki_defconfig
 elif [[ "$KSU_BRANCH" == "n" || "$KSU_BRANCH" == "N" ]]; then
   echo ">>> 拉取 KernelSU Next 并设置版本..."
   curl -LSs "https://raw.githubusercontent.com/pershoot/KernelSU-Next/refs/heads/dev-susfs/kernel/setup.sh" | bash -s dev-susfs
@@ -203,8 +203,8 @@ elif [[ "$KSU_BRANCH" == [fF] ]]; then
     echo ">>> 警告：未取得 FinaSU 管理器签名证书，FinaSU 管理器可能显示未安装"
   fi
   # 本地检出同样是 detached 提交，Kbuild 的 rev-parse --abbrev-ref 会显示 @HEAD，固定为品牌名
-  sed -i 's/@[$](KSU_VERSION_BRANCH)/@cctv18/' KernelSU/kernel/Kbuild
-  grep -q '@cctv18' KernelSU/kernel/Kbuild || echo ">>> 警告：FinaSU 品牌名替换未命中（上游 Kbuild 结构可能已变化）"
+  sed -i 's/@[$](KSU_VERSION_BRANCH)/@YG/' KernelSU/kernel/Kbuild
+  grep -q '@YG' KernelSU/kernel/Kbuild || echo ">>> 警告：FinaSU 品牌名替换未命中（上游 Kbuild 结构可能已变化）"
   DRIVER_DIR=./common/drivers
   ln -sfn "$(pwd)/KernelSU/kernel" "$DRIVER_DIR/kernelsu"
   # 实体化树内 uapi 符号链接（其指向仓库根 uapi/），规避跨目录符号链接解析差异
