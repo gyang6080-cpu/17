@@ -291,7 +291,7 @@ jobs:
             KSU_COMMIT=$(sort -u -t$'\t' -k1,1r "$CAND_FILE" | head -n1 | cut -f2)
             rm -f "$CAND_FILE"
             curl -LSs "https://raw.githubusercontent.com/Baka-SU/BakaSU/refs/heads/main/kernel/setup.sh" | bash -s main
-            echo 'CONFIG_KSU_FULL_NAME_FORMAT="%TAG_NAME%-%COMMIT_SHA%@cctv18"' >> ./common/arch/arm64/configs/gki_defconfig
+            echo 'CONFIG_KSU_FULL_NAME_FORMAT="%TAG_NAME%-%COMMIT_SHA%@YG"' >> ./common/arch/arm64/configs/gki_defconfig
             cd ./KernelSU
             if [ -n "$KSU_COMMIT" ]; then
               if ! git checkout --detach "$KSU_COMMIT" 2>/dev/null; then
